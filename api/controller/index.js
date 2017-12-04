@@ -1,0 +1,1 @@
+module.exports.RatingController = require('./rating');
