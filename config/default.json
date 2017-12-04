@@ -1,5 +1,10 @@
 {
-  "database": {},
+  "omdb": {
+    "apiKey": "",
+    "host": ""
+  },
 
-  "omdb": {}
+  "jwt": {
+    "secret": ""
+  }
 }

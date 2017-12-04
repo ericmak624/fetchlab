@@ -3,9 +3,11 @@ const { Rating } = require('../../database');
 const config = require('config');
 const cheerio = require('cheerio');
 const chalk = require('chalk');
+const jwt = require('jsonwebtoken');
 
-const omdb_host = config.omdb.host;
-const omdb_apiKey = config.omdb.apiKey;
+const omdb_host = config.omdb.host || process.env.OMDB_HOST;
+const omdb_apiKey = config.omdb.apiKey || process.env.OMDB_APIKEY;
+const secret = config.jwt.secret || process.env.JWT_SECRET;
 
 const getDoubanRating = (imdb_id) => {
   const options = {
@@ -57,10 +59,16 @@ module.exports.lazyLoadRatings = (req, res) => {
 };
 
 module.exports.getRatingWithId = (req, res) => {
-  let response = null;
-  let id = req.params.id; //imdb_id
+  let response, decoded;
+  const [type, token] = req.headers.authorization.split(' ');
 
-  Rating.findOne({ 'imdb.id': id }).exec()
+  try {
+    decoded = jwt.verify(token, secret);
+  } catch(err) {
+    return res.sendStatus(401);
+  }
+  
+  Rating.findOne({ 'imdb.id': decoded.id }).exec()
     .then((data) => {
       if (data) {
         response = JSON.stringify(data);
