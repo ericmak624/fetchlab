@@ -1,0 +1,22 @@
+{
+  "database": {
+    "client": "postgres",
+    "connection": {
+      "host": "localhost",
+      "database": "fetchlab",
+      "user": "",
+      "password": "",
+      "port": 5432
+    },
+    "pool": {
+      "min": 0,
+      "max": 5
+    }
+  },
+
+  "omdb": {
+    "apiKey": "36b233de",
+    "host": "http://www.omdbapi.com"
+  }
+
+}

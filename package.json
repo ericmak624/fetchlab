@@ -1,0 +1,27 @@
+{
+  "name": "fetchlab",
+  "version": "0.0.1",
+  "description": ":.",
+  "main": "index.js",
+  "repository": "https://github.com/ericmai624/fetchlab.git",
+  "author": "Eric Mai <enmai1988@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production node api",
+    "dev": "nodemon api",
+    "db": "mongod --dbpath database/data"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chalk": "^2.3.0",
+    "cheerio": "^1.0.0-rc.2",
+    "config": "^1.28.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.6",
+    "morgan": "^1.9.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
