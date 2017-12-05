@@ -9,7 +9,10 @@ require('../service/worker');
 app.use(middleware.bodyParser.json());
 app.use(middleware.bodyParser.urlencoded({ extended: true }));
 app.use(middleware.morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev'));
-app.use(middleware.authorization);
+
+app.get('/keepalive', (req, res) => res.sendStatus(200)); // use to keep heroku instance alive
+
+app.use(middleware.authorization); // Secure all endpointers below this line
 
 app.use('/api/rating', routes.rating);
 
