@@ -4,7 +4,6 @@ const app = express();
 const middleware = require('./middleware');
 const routes = require('./routes');
 const port = process.env.PORT || 8000;
-require('../service/worker');
 
 app.use(middleware.bodyParser.json());
 app.use(middleware.bodyParser.urlencoded({ extended: true }));
